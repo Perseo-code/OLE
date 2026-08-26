@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.20)
 
 project(OLE
     VERSION 0.1.0
-    LANGUAGES CXX
+    LANGUAGES C CXX
 )
 
 set(CMAKE_CXX_STANDARD 20)
@@ -15,11 +15,14 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 
 add_library(ole_engine
     engine/core/window.cpp
+    engine/renderer/renderer.cpp
+    engine/renderer/glad/src/gl.c
 )
 
 target_include_directories(ole_engine
     PUBLIC
         engine
+        engine/renderer/glad/include
 )
 
 # =========================
@@ -27,10 +30,12 @@ target_include_directories(ole_engine
 # =========================
 
 find_package(glfw3 REQUIRED)
+find_package(OpenGL REQUIRED)
 
 target_link_libraries(ole_engine
     PUBLIC
         glfw
+        OpenGL::GL
 )
 
 # =========================

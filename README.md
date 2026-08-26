@@ -8,8 +8,29 @@ You can program in lua, just like in roblox.
 
 # Updates & Documentation
 This code is maintained only by one developer ([me](https://github.com/Perseo-code)). Can take a long time to even actually work. \
-Still, I will try to at least add lots of comments, along with a user and developer guide.
+Still, I will try to at least add lots of comments, along with an user and developer guide.
 
-# License
+# Tiny Example
+
+```C++
+#include "core/window.hpp"
+#include "renderer/renderer.hpp"
+
+int main() {
+    OLE::Window window(1280 /*Width*/, 720 /*Height*/, "Title");
+    OLE::Renderer renderer;
+
+    while (!window.shouldClose()) {
+        renderer.clear();
+        window.update();
+    }
+
+    return 0;
+}
+```
+
+## License
 
 OLE uses the GPLv3 license, for more details, click [here](LICENSE)
+
+Copyright (C) 2026 Perseo-code
