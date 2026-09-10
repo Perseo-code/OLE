@@ -4,8 +4,7 @@ int main() {
     OLE::Window window(1280, 720, "Test");
     OLE::Renderer renderer(window);
     while (!window.shouldClose()) {
-        renderer.clear();
-        window.update();
+        renderer.update();
     }
 
     return 0;

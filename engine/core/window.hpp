@@ -1,16 +1,17 @@
 #pragma once
 #define GLFW_INCLUDE_NONE
-#include <GLFW/glfw3.h>
+#include <SDL3/SDL.h>
+#include <SDL3/SDL_main.h>
+
 namespace OLE {
     class Window {
     public:
         Window(int, int, const char*);
         ~Window();
-
-        void update();
         bool shouldClose() const;
+        SDL_Window* getWindow() {return window;};
+        SDL_Event event;
     private:
-        struct Impl;
-        Impl* impl;
+        SDL_Window* window;
     };
 };

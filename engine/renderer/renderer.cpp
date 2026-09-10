@@ -3,11 +3,24 @@
 using namespace OLE;
 
 Renderer::Renderer(Window& window) : window(window) {
-    if (!gladLoadGL(reinterpret_cast<GLADloadfunc>(glfwGetProcAddress)))
-        throw std::runtime_error("Failed to initialize GLAD");
+    renderer = SDL_CreateRenderer(window.getWindow(), NULL);
+    if (!renderer) {
+        SDL_Log("Couldn't create the renderer. Error: %s", SDL_GetError());
+        SDL_Quit();
+        throw std::runtime_error("Couldn't create the renderer.");
+    }
+}
+
+void Renderer::render() {
+    SDL_RenderPresent(renderer);
+    SDL_PollEvent(&window.event);
 }
 
 void Renderer::clear() {
-    glClearColor(0.1f, 0.1f, 0.15f, 1.0f);
-    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    SDL_RenderClear(renderer);    
+}
+
+void Renderer::update() {
+    clear();
+    render();
 }

@@ -16,26 +16,22 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 add_library(ole_engine
     engine/core/window.cpp
     engine/renderer/renderer.cpp
-    engine/renderer/glad/src/gl.c
 )
 
 target_include_directories(ole_engine
     PUBLIC
         engine
-        engine/renderer/glad/include
 )
 
 # =========================
 # Dependencies
 # =========================
 
-find_package(glfw3 REQUIRED)
-find_package(OpenGL REQUIRED)
+find_package(SDL3 REQUIRED)
 
 target_link_libraries(ole_engine
     PUBLIC
-        glfw
-        OpenGL::GL
+        SDL3
 )
 
 # =========================

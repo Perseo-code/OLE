@@ -12,21 +12,17 @@ Still, I will try to at least add lots of comments, along with an user and devel
 
 # Tiny Example
 
-```C++
-#include "core/window.hpp"
-#include "renderer/renderer.hpp"
+```Lua
+local player = game.Players.LocalPlayer
+local gui = player.gui
+local screengui = gui.screengui
+local label = screengui.label
+local rstorage = game.ReplicatedStorage
+local event = rstorage:WaitForChild("event")
 
-int main() {
-    OLE::Window window(1280 /*Width*/, 720 /*Height*/, "Title");
-    OLE::Renderer renderer;
-
-    while (!window.shouldClose()) {
-        renderer.clear();
-        window.update();
-    }
-
-    return 0;
-}
+event.OnEvent:Connect(function ()
+    print("Event")
+end)
 ```
 
 ## License
